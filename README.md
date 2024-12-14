@@ -1,11 +1,5 @@
 # autodnn
 
-[![Release](https://img.shields.io/github/v/release/e0lithic/autodnn)](https://img.shields.io/github/v/release/e0lithic/autodnn)
-[![Build status](https://img.shields.io/github/actions/workflow/status/e0lithic/autodnn/main.yml?branch=main)](https://github.com/e0lithic/autodnn/actions/workflows/main.yml?query=branch%3Amain)
-[![codecov](https://codecov.io/gh/e0lithic/autodnn/branch/main/graph/badge.svg)](https://codecov.io/gh/e0lithic/autodnn)
-[![Commit activity](https://img.shields.io/github/commit-activity/m/e0lithic/autodnn)](https://img.shields.io/github/commit-activity/m/e0lithic/autodnn)
-[![License](https://img.shields.io/github/license/e0lithic/autodnn)](https://img.shields.io/github/license/e0lithic/autodnn)
-
 Automated Neural Network Compression
 
 - **Github repository**: <https://github.com/e0lithic/autodnn/>
@@ -55,10 +49,6 @@ git push origin main
 
 You are now ready to start development on your project!
 The CI/CD pipeline will be triggered when you open a pull request, merge to main, or when you create a new release.
-
-To finalize the set-up for publishing to PyPI, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/publishing/#set-up-for-pypi).
-For activating the automatic documentation with MkDocs, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/mkdocs/#enabling-the-documentation-on-github).
-To enable the code coverage reports, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/codecov/).
 
 ## Releasing a new version
 

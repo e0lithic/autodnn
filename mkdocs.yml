@@ -5,7 +5,7 @@ site_description: Automated Neural Network Compression
 site_author: Arnavesh Giri
 edit_uri: edit/main/docs/
 repo_name: e0lithic/autodnn
-copyright: Maintained by <a href="https://e0lithic.com">e0lithic</a>.
+copyright: Maintained by AigenEdge.
 
 nav:
   - Home: index.md

@@ -28,11 +28,14 @@ jobs:
       - name: Build package
         run: uvx --from build pyproject-build --installer uv
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: dist/*
+      - name: Upload Release Assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # For each file in dist directory
+          for file in dist/*; do
+            gh release upload ${{ github.ref_name }} "$file" --clobber
+          done
 
   deploy-docs:
     needs: build

@@ -39,7 +39,7 @@ jobs:
 
   deploy-docs:
     needs: build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Check out
         uses: actions/checkout@v4
@@ -47,5 +47,38 @@ jobs:
       - name: Set up the environment
         uses: ./.github/actions/setup-python-env
 
+      - name: Get package name
+        id: pkg-name
+        run: |
+          PACKAGE_NAME=$(grep -Po '^name = "\K[^"]*' pyproject.toml)
+          echo "name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
+
       - name: Deploy documentation
         run: uv run mkdocs gh-deploy --force
+
+      # Wait a moment for gh-pages to update
+      - name: Wait for gh-pages
+        run: sleep 30
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages-docs
+
+      - name: Create docs archive
+        run: |
+          cd gh-pages-docs
+          # Remove 'v' prefix from tag if present
+          VERSION=${{ github.ref_name }}
+          VERSION=${VERSION#v}
+          zip -r "../${{ steps.pkg-name.outputs.name }}-$VERSION-docs.zip" ./*
+
+      - name: Upload docs to release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Remove 'v' prefix from tag if present
+          VERSION=${{ github.ref_name }}
+          VERSION=${VERSION#v}
+          gh release upload ${{ github.ref_name }} "${{ steps.pkg-name.outputs.name }}-$VERSION-docs.zip" --clobber

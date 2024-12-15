@@ -9,7 +9,7 @@ on:
 
 jobs:
   quality:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Check out
         uses: actions/checkout@v4
@@ -26,7 +26,7 @@ jobs:
         run: make check
 
   tests-and-type-check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         python-version: ["3.10"]
@@ -50,7 +50,7 @@ jobs:
         run: uv run mypy
 
   check-docs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Check out
         uses: actions/checkout@v4
